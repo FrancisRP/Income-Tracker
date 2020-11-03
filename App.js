@@ -1,6 +1,17 @@
 import { StatusBar } from 'expo-status-bar';
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { 
+  StyleSheet, 
+  Text, 
+  View
+  Dimensions,
+  TextInput,
+  Button
+ } from 'react-native';
+import {
+  BarChart,
+  LineChart
+} from "react-native-chart-kit"
 
 export default function App() {
   return (
