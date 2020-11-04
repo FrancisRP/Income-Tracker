@@ -3,30 +3,42 @@ import React from 'react';
 import { 
   StyleSheet, 
   Text, 
-  View
+  View,
   Dimensions,
   TextInput,
-  Button
+  Button,
+  SafeAreaView
  } from 'react-native';
 import {
   BarChart,
   LineChart
-} from "react-native-chart-kit"
+} from "react-native-chart-kit";
+import Todo from './Todo';
 
-export default function App() {
+const App = () => {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <SafeAreaView style={styles.container}>
+      <View>
+        <Text style={styles.titleText}>Tracker Income</Text>
+      </View>
+      <View>
+        <Todo title='Lets go!' />
+        <Todo title='Lets go!' />
+        <Todo title='Lets go!' />
+      </View>
+    </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
+  titleText: {
+    fontSize: 30,
+    fontWeight: "bold",
   },
+  container: {
+    paddingTop: 50,
+    paddingLeft: 20,
+  }
 });
+
+export default App;
