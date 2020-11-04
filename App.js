@@ -1,5 +1,5 @@
 import { StatusBar } from 'expo-status-bar';
-import React from 'react';
+import React, {useState} from 'react';
 import { 
   StyleSheet, 
   Text, 
@@ -7,7 +7,9 @@ import {
   Dimensions,
   TextInput,
   Button,
-  SafeAreaView
+  SafeAreaView,
+  ScrollView,
+  ViewPager
  } from 'react-native';
 import {
   BarChart,
@@ -16,16 +18,33 @@ import {
 import Todo from './Todo';
 
 const App = () => {
+  const [input, setInput] = useState('');
+  const [todos, setTodos] = useState([]);
+
+  const addTodo = () => {
+    setTodos([input, ...todos])
+    setInput('');
+  }
+
   return (
     <SafeAreaView style={styles.container}>
       <View>
         <Text style={styles.titleText}>Tracker Income</Text>
       </View>
-      <View>
-        <Todo title='Lets go!' />
-        <Todo title='Lets go!' />
-        <Todo title='Lets go!' />
-      </View>
+
+      <ScrollView>
+        {todos.map(todo => (
+          <Todo title={todo} />
+        ))}
+      </ScrollView>
+
+      <TextInput 
+        style={styles.todoInput}
+        value={input}
+        onChangeText={text => setInput(text)}
+      />
+      <Button title='Add todo' onPress={addTodo} />
+
     </SafeAreaView>
   );
 }
@@ -38,6 +57,13 @@ const styles = StyleSheet.create({
   container: {
     paddingTop: 50,
     paddingLeft: 20,
+    paddingRight: 20
+  },
+  todoInput: {
+    height: 40,
+    borderColor: 'red',
+    borderWidth: 1,
+    margin: 20,
   }
 });
 
